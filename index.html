@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kodemyo - Yazılım Hizmetleri</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: #0f1c2e;
+      color: #ffffff;
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      flex: 1;
+      background-color: #0f1c2e;
+    }
+
+    .sidebar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .main {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      background-color: #0f1c2e;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #0f1c2e;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00d1d1;
+    }
+
+    .menu-toggle {
+      font-size: 24px;
+      color: #ffffff;
+      display: none;
+      cursor: pointer;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    .menu li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .menu li a.active,
+    .menu li a:hover {
+      color: #00d1d1;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .content h1 {
+      font-size: 36px;
+    }
+
+    .slogan {
+      font-size: 1.2em;
+      color: #00d1d1;
+      margin-top: 10px;
+    }
+
+    .intro-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1000;
+    }
+
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #0f1c2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #0f1c2e;
+        position: absolute;
+        right: 20px;
+        top: 70px;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      .menu.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-overlay" id="videoOverlay">
+    <video class="intro-video" id="introVideo" autoplay muted>
+      <source src="softıvıo.mp4" type="video/mp4" />
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+  </div>
+
+  <div class="wrapper" id="mainContent" class="hide">
+    <!-- Sol görsel -->
+    <div class="sidebar">
+      <img src="foto/anasayfa.png" alt="Tanıtım Görseli" />
+    </div>
+
+    <!-- Ana içerik -->
+    <div class="main">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="foto/logo.png" alt="Kodemyo Logo" style="height: 40px; vertical-align: middle;" />
+          Kodemyo
+        </div>
+        <div class="menu-toggle">&#9776;</div>
+        <ul class="menu">
+          <li><a href="#" class="active">Ana Sayfa</a></li>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="hizmetler.html">Hizmetler</a></li>
+          <li><a href="ürünler.html">Ürünler</a></li>
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <section class="content">
+        <h1>Hoş Geldiniz!</h1>
+        <p>Kodemyo ile yazılım dünyasına adım attınız.</p>
+        <p class="slogan">Kodla. Geliştir. Geleceğe Yön Ver.</p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+
+    // Video bittikten sonra ana içeriği göster
+    const video = document.getElementById('introVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const mainContent = document.getElementById('mainContent');
+
+    video.onended = () => {
+      overlay.style.display = 'none';
+      mainContent.classList.remove('hide');
+    };
+
+        setTimeout(() => {
+      overlay.style.display = 'none';
+      mainContent.classList.remove('hide');
+      video.pause();
+    }, 1000);
+  </script>
+      <footer>
+        &copy; 2025 Kodemyo - Tüm hakları saklıdır.
+    </footer>
+</body>
+</html>
